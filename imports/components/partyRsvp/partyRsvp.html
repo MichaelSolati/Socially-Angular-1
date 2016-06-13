@@ -1,3 +1,12 @@
-<input type="button" value="I'm going!" ng-click="partyRsvp.yes()" class="btn btn-default" ng-class="{'btn-primary' : partyRsvp.isYes()}"/>
-<input type="button" value="Maybe" ng-click="partyRsvp.maybe()" class="btn btn-default" ng-class="{'btn-primary' : partyRsvp.isMaybe()}"/>
-<input type="button" value="No" ng-click="partyRsvp.no()" class="btn btn-default" ng-class="{'btn-primary' : partyRsvp.isNo()}"/>
+<h4 class="md-headline">
+  Users to invite:
+</h4>
+
+<md-list>
+  <md-list-item ng-repeat="user in partyUninvited.users | uninvitedFilter:partyUninvited.party" ng-click="partyUninvited.invite(user)">
+    <p>{{ user | displayNameFilter }}</p>
+  </md-list-item>
+  <md-list-item ng-if="(partyUninvited.users | uninvitedFilter:partyUninvited.party).length <= 0">
+    Everyone are already invited.
+  </md-list-item>
+</md-list>
